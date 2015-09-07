@@ -60,7 +60,7 @@ namespace OfficeOpenXml.VBA
         {
             get
             {
-                return _list.Find((f) => f.GetType().GetProperty("Name").GetValue(f, null).ToString().Equals(Name,StringComparison.InvariantCultureIgnoreCase));
+                return _list.Find((f) => f.GetType().GetProperty("Name").GetValue(f, null).ToString().Equals(Name,StringComparisonEx.InvariantCultureIgnoreCase));
             }
         }
         /// <summary>
@@ -89,7 +89,7 @@ namespace OfficeOpenXml.VBA
         /// <returns>True if the name exists</returns>
         public bool Exists(string Name)
         {
-            return _list.Exists((f) => f.GetType().GetProperty("Name").GetValue(f, null).ToString().Equals(Name,StringComparison.InvariantCultureIgnoreCase));
+            return _list.Exists((f) => f.GetType().GetProperty("Name").GetValue(f, null).ToString().Equals(Name,StringComparisonEx.InvariantCultureIgnoreCase));
         }
         /// <summary>
         /// Removes the item

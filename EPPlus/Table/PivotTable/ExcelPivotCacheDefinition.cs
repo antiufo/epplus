@@ -191,7 +191,7 @@ namespace OfficeOpenXml.Table.PivotTable
                             var name = GetXmlNodeString(_sourceNamePath);
                             foreach (var n in PivotTable.WorkSheet.Workbook.Names)
                             {
-                                if(name.Equals(n.Name,StringComparison.InvariantCultureIgnoreCase))
+                                if(name.Equals(n.Name,StringComparisonEx.InvariantCultureIgnoreCase))
                                 {
                                     _sourceRange = n;
                                     return _sourceRange;
@@ -206,7 +206,7 @@ namespace OfficeOpenXml.Table.PivotTable
                                 }
                                 foreach (var n in w.Names)
                                 {
-                                    if (name.Equals(n.Name, StringComparison.InvariantCultureIgnoreCase))
+                                    if (name.Equals(n.Name, StringComparisonEx.InvariantCultureIgnoreCase))
                                     {
                                         _sourceRange = n;
                                         break;

@@ -171,7 +171,7 @@ namespace OfficeOpenXml.ConditionalFormatting
       try
       {
         var value = node.Attributes[attribute].Value;
-        return (value == "1" || value == "-1" || value.Equals("TRUE", StringComparison.InvariantCultureIgnoreCase));
+        return (value == "1" || value == "-1" || value.Equals("TRUE", StringComparisonEx.InvariantCultureIgnoreCase));
       }
       catch
       {
@@ -198,7 +198,7 @@ namespace OfficeOpenXml.ConditionalFormatting
           else
           {
               var value = node.Attributes[attribute].Value;
-              return (value == "1" || value == "-1" || value.Equals("TRUE",StringComparison.InvariantCultureIgnoreCase));
+              return (value == "1" || value == "-1" || value.Equals("TRUE",StringComparisonEx.InvariantCultureIgnoreCase));
           }
       }
       catch
