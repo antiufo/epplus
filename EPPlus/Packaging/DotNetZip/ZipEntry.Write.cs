@@ -2564,18 +2564,23 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
         [System.Diagnostics.ConditionalAttribute("Trace")]
         private void TraceWriteLine(string format, params object[] varParams)
         {
+
+
+            System.Diagnostics.Debug.WriteLine(string.Format(format, varParams));
+#if false
             lock (_outputLock)
             {
                 int tid = System.Threading.Thread.CurrentThread.GetHashCode();
-#if ! (NETCF || SILVERLIGHT)
+#if !(NETCF || SILVERLIGHT)
                 Console.ForegroundColor = (ConsoleColor)(tid % 8 + 8);
 #endif
                 Console.Write("{0:000} ZipEntry.Write ", tid);
                 Console.WriteLine(format, varParams);
-#if ! (NETCF || SILVERLIGHT)
+#if !(NETCF || SILVERLIGHT)
                 Console.ResetColor();
 #endif
             }
+#endif
         }
 
         private object _outputLock = new Object();
