@@ -483,7 +483,7 @@ namespace OfficeOpenXml
                 value=_package.Workbook.Worksheets.ValidateFixSheetName(value);
                 foreach(var ws in Workbook.Worksheets)
                 {
-                    if(ws.PositionID!=PositionID && ws.Name.Equals(value,StringComparison.InvariantCultureIgnoreCase))
+                    if(ws.PositionID!=PositionID && ws.Name.Equals(value,StringComparisonEx.InvariantCultureIgnoreCase))
                     {
                         throw (new ArgumentException("Worksheet name must be unique"));
                     }

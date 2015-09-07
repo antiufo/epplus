@@ -206,7 +206,7 @@ namespace OfficeOpenXml.Style.XmlAccess
                     NetTextFormat = NetTextFormatForWidth = "";
                     DataType = eFormatType.DateTime;
                 }
-                else if (format.Equals("general",StringComparison.InvariantCultureIgnoreCase))
+                else if (format.Equals("general",StringComparisonEx.InvariantCultureIgnoreCase))
                 {
                     NetFormat = NetFormatForWidth = "0.#####";
                     NetTextFormat = NetTextFormatForWidth = "";
@@ -303,11 +303,11 @@ namespace OfficeOpenXml.Style.XmlAccess
                                     }
                                     if (li.Length > 1)
                                     {
-                                        if (li[1].Equals("f800", StringComparison.InvariantCultureIgnoreCase))
+                                        if (li[1].Equals("f800", StringComparisonEx.InvariantCultureIgnoreCase))
                                         {
                                             specialDateFormat = "D";
                                         }
-                                        else if (li[1].Equals("f400", StringComparison.InvariantCultureIgnoreCase))
+                                        else if (li[1].Equals("f400", StringComparisonEx.InvariantCultureIgnoreCase))
                                         {
                                             specialDateFormat = "T";
                                         }

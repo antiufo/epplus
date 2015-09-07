@@ -1049,7 +1049,7 @@ namespace OfficeOpenXml
             ExcelWorksheet xlWorksheet = null;
             foreach (ExcelWorksheet worksheet in _worksheets.Values)
             {
-                if (worksheet.Name.Equals(Name, StringComparison.InvariantCultureIgnoreCase))
+                if (worksheet.Name.Equals(Name, StringComparisonEx.InvariantCultureIgnoreCase))
                     xlWorksheet = worksheet;
             }
             return (xlWorksheet);

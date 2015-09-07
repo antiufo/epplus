@@ -150,7 +150,7 @@ namespace OfficeOpenXml
                 //Delete the shared string part, it will be recreated when the package is saved.
                 foreach (var rel in Part.GetRelationships())
                 {
-                    if (rel.TargetUri.OriginalString.EndsWith("sharedstrings.xml", StringComparison.InvariantCultureIgnoreCase))
+                    if (rel.TargetUri.OriginalString.EndsWith("sharedstrings.xml", StringComparisonEx.InvariantCultureIgnoreCase))
                     {
                         Part.DeleteRelationship(rel.Id);
                         break;
