@@ -1,11 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84BB37E9-CE27-48E0-88F6-A741A46D5883}"
 	ProjectSection(SolutionItems) = preProject
 		ExcelPackage.vsmdi = ExcelPackage.vsmdi
+		global.json = global.json
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
 EndProject
@@ -18,6 +19,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPPlusWebSample", "EPPlusWebSample\EPPlusWebSample.csproj", "{1BF30A52-6149-432D-82F6-725250E5C662}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPPlusExcelCalculationDemo", "EPPlusExcelCalculationSample\EPPlusExcelCalculationDemo.csproj", "{94CBCEFC-DDBF-4F54-8AEA-4C40BBD2881B}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Shaman.EPPlus", "EPPlus\Shaman.EPPlus\Shaman.EPPlus.xproj", "{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Shaman.System.Drawing", "..\PortableDrawingPrimitives\Shaman.System.Drawing\Shaman.System.Drawing.xproj", "{A347178E-D035-4C83-B3F2-59A212915B7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +112,42 @@ Global
 		{94CBCEFC-DDBF-4F54-8AEA-4C40BBD2881B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{94CBCEFC-DDBF-4F54-8AEA-4C40BBD2881B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{94CBCEFC-DDBF-4F54-8AEA-4C40BBD2881B}.Release|x86.ActiveCfg = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Debug|x86.Build.0 = Debug|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release 4.0|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release 4.0|Mixed Platforms.Build.0 = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release 4.0|x86.ActiveCfg = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release 4.0|x86.Build.0 = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release|x86.ActiveCfg = Release|Any CPU
+		{D2DF55BB-803E-4CF7-9DA6-6353390CF7EB}.Release|x86.Build.0 = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Debug|x86.Build.0 = Debug|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release 4.0|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release 4.0|Mixed Platforms.Build.0 = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release 4.0|x86.ActiveCfg = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release 4.0|x86.Build.0 = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release|x86.ActiveCfg = Release|Any CPU
+		{A347178E-D035-4C83-B3F2-59A212915B7F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
