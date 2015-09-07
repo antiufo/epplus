@@ -816,8 +816,12 @@ namespace OfficeOpenXml
         internal static void LoadXmlSafe(XmlDocument xmlDoc, Stream stream)
         {
             XmlReaderSettings settings = new XmlReaderSettings();
+#if CORECLR
+            settings.DtdProcessing = DtdProcessing.Prohibit;
+#else
             //Disable entity parsing (to aviod xmlbombs, External Entity Attacks etc).
             settings.ProhibitDtd = true;
+#endif
             XmlReader reader = XmlReader.Create(stream, settings);
             xmlDoc.Load(reader);
         }
