@@ -312,6 +312,9 @@ namespace OfficeOpenXml
         /// <param name="Password"></param>
         public void SetPassword(string Password)
         {
+#if CORECLR
+            throw new NotSupportedException();
+#else
             if (IsProtected == false) IsProtected = true;
 
             Password = Password.Trim();
@@ -327,6 +330,7 @@ namespace OfficeOpenXml
 
             int hash = EncryptedPackageHandler.CalculatePasswordHash(Password);
             SetXmlNodeString(_passwordPath, ((int)hash).ToString("x"));
+#endif
         }
 
     }

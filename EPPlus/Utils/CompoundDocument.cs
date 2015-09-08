@@ -577,7 +577,7 @@ namespace OfficeOpenXml.Utils
         {
             ILockBytes lb;
             var iret = CreateILockBytesOnHGlobal(IntPtr.Zero, true, out lb);
-            byte[] docArray = stream.GetBuffer();
+            byte[] docArray = stream.GetBufferBorrowed();
 
             IntPtr buffer = Marshal.AllocHGlobal(docArray.Length);
             Marshal.Copy(docArray, 0, buffer, docArray.Length);

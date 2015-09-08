@@ -151,7 +151,7 @@ namespace OfficeOpenXml
                     {
                         parser.Logger.LogCellCounted();
                     }
-                    Thread.Sleep(0);
+                    // Thread.Sleep(0);
                 }
                 catch (FormatException fe)
                 {

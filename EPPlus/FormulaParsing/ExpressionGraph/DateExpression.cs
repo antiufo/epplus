@@ -47,7 +47,7 @@ namespace OfficeOpenXml.FormulaParsing.ExpressionGraph
         public override CompileResult Compile()
         {
             var date = double.Parse(ExpressionString,CultureInfo.InvariantCulture);
-            return new CompileResult(DateTime.FromOADate(date), DataType.Date);
+            return new CompileResult(ExtensionMethods.FromOADate(date), DataType.Date);
         }
     }
 }

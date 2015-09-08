@@ -1,7 +1,10 @@
 {
-  "version": "1.0.0-*",
+  "version": "1.0.0-beta-3688",
   "compilationOptions": {
-    "keyFile": "../OpenOfficeXml.snk"
+    "keyFile": "../OpenOfficeXml.snk",
+    "define": [
+      "NO_SFX"
+    ]
   },
   "compile": [
     "../**/*.cs"
@@ -9,15 +12,15 @@
   "exclude": [
     "../Style/ExcelRichTextHtmlUtility.cs"
   ],
-  "net45": {
-    "frameworkAssemblies": {
-      "System.Xml": "4.0.0.0",
-      "System.Drawing": "4.0.0.0",
-      "System.Data": "4.0.0.0",
-      "System.Security": "4.0.0.0"
-    }
-  },
   "frameworks": {
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Xml": "4.0.0.0",
+        "System.Drawing": "4.0.0.0",
+        "System.Data": "4.0.0.0",
+        "System.Security": "4.0.0.0"
+      }
+    },
     "dnxcore50": {
       "compilationOptions": {
         "define": [
@@ -30,19 +33,22 @@
         "System.IO": "4.0.11-beta-23225",
         "System.Linq": "4.0.1-beta-23225",
         "System.Xml.XPath": "4.0.1-beta-23225",
-        "Shaman.System.Drawing": "1.0.0-beta-4003",
+        "Shaman.System.Drawing": "1.0.0-beta-4004",
         "System.Security.Cryptography.Primitives": "4.0.0-beta-23225",
         "System.Xml.ReaderWriter": "4.0.11-beta-23225",
         "System.ComponentModel": "4.0.1-beta-23225",
-        "System.Security.Cryptography.Cng": "4.0.0-beta-23302",
-        "System.Security.Cryptography.Algorithms": "4.0.0-beta-23302",
         "System.Collections": "4.0.11-beta-23225",
         "System.Data.Common": "4.0.1-beta-23225",
-        "System.Xml.XPath.XmlDocument": "4.0.1-beta-23302"
+        "System.Xml.XPath.XmlDocument": "4.0.1-beta-23302",
+        "System.Security.Cryptography.X509Certificates": "4.0.0-beta-23225",
+        "System.Security.Cryptography.Hashing.Algorithms": "4.0.0-beta-23224",
+        "System.Threading": "4.0.11-beta-23225",
+        "System.Threading.ThreadPool": "4.0.10-beta-23225",
+        "System.Reflection": "4.1.0-beta-23225",
+        "System.Reflection.Extensions": "4.0.1-beta-23225",
+        "System.Reflection.Primitives": "4.0.1-beta-23225",
+        "System.Reflection.TypeExtensions": "4.0.1-beta-23225"
       }
     }
-  },
-  "dependencies": {
-    "Shaman.System.Drawing": "1.0.0-beta-4003"
   }
 }

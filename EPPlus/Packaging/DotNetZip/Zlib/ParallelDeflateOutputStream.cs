@@ -628,7 +628,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib
                                 workitem.inputBytesAvailable );
 
                     if (!ThreadPool.QueueUserWorkItem( _DeflateOne, workitem ))
-                        throw new Exception("Cannot enqueue workitem");
 
                     _currentlyFilling = -1; // will get a new buffer next time
                 }
@@ -737,8 +736,9 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib
         /// You must call Close on the stream to guarantee that all of the data written in has
         /// been compressed, and the compressed data has been written out.
         /// </remarks>
-        public override void Close()
+        protected override void Dispose(bool disposing)
         {
+            if (!disposing) return;
             TraceOutput(TraceBits.Session, "Close {0:X8}", this.GetHashCode());
 
             if (_pendingException != null)
@@ -780,21 +780,13 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib
         new public void Dispose()
         {
             TraceOutput(TraceBits.Lifecycle, "Dispose  {0:X8}", this.GetHashCode());
-            Close();
+            this.Close();
             _pool = null;
-            Dispose(true);
+            this.Dispose(true);
         }
 
 
 
-        /// <summary>The Dispose method</summary>
-        /// <param name="disposing">
-        ///   indicates whether the Dispose method was invoked by user code.
-        /// </param>
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-        }
 
 
         /// <summary>
@@ -1228,6 +1220,9 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib
         {
             if ((bits & _DesiredTrace) != 0)
             {
+                System.Diagnostics.Debug.WriteLine(string.Format(format, varParams));
+
+#if false
                 lock(_outputLock)
                 {
                     int tid = Thread.CurrentThread.GetHashCode();
@@ -1240,6 +1235,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib
                     Console.ResetColor();
 #endif
                 }
+#endif
             }
         }
 

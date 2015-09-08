@@ -16,10 +16,12 @@ namespace OfficeOpenXml.FormulaParsing.Logging
         private DateTime _startTime = DateTime.Now;
         private Dictionary<string, int> _funcs = new Dictionary<string, int>();
         private Dictionary<string, long> _funcPerformance = new Dictionary<string, long>();
+
         internal TextFileLogger(FileInfo fileInfo)
         {
-            _sw = new StreamWriter(fileInfo.FullName);
+            _sw = new StreamWriter(File.Open( fileInfo.FullName, FileMode.Create, FileAccess.Write, FileShare.Delete | FileShare.Read));
         }
+
 
         private void WriteSeparatorAndTimeStamp()
         {

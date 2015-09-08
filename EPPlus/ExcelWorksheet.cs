@@ -34,7 +34,6 @@ using System;
 using System.Xml;
 using System.Collections.Generic;
 using System.IO;
-using System.Configuration;
 using OfficeOpenXml.Drawing;
 using System.Diagnostics;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
@@ -57,6 +56,9 @@ using Ionic.Zip;
 using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
 using OfficeOpenXml.FormulaParsing;
 using OfficeOpenXml.Packaging.Ionic.Zip;
+using System.Reflection;
+using XmlTextReader = System.Xml.XmlReader;
+
 namespace OfficeOpenXml
 {
     /// <summary>
@@ -803,9 +805,7 @@ namespace OfficeOpenXml
             _package.DoAdjustDrawings = false;
             Stream stream = packPart.GetStream();
 
-            XmlTextReader xr = new XmlTextReader(stream);
-            xr.ProhibitDtd = true;
-            xr.WhitespaceHandling = WhitespaceHandling.None;
+            XmlTextReader xr = XmlReader.Create(stream, new XmlReaderSettings()  { DtdProcessing=DtdProcessing.Prohibit, IgnoreWhitespace=true });
             LoadColumns(xr);    //columnXml
             long start = stream.Position;
             LoadCells(xr);
@@ -1070,7 +1070,7 @@ namespace OfficeOpenXml
                 if (xr.LocalName == nodeText || xr.LocalName == altNode) return true;
             }
             while(xr.Read());
-            xr.Close();
+            xr.Dispose();
             return false;
         }
         /// <summary>
@@ -1405,7 +1405,7 @@ namespace OfficeOpenXml
                         }
                         if (res >= -657435.0 && res < 2958465.9999999)
                         {
-                            _values.SetValue(row, col, DateTime.FromOADate(res));
+                            _values.SetValue(row, col, ExtensionMethods.FromOADate(res));
                         }
                         else
                         {
@@ -2578,11 +2578,11 @@ namespace OfficeOpenXml
             }
             Type fromType = v.GetType();
             Type toType = typeof(T);
+            var cnv = new Converter(fromType);
             if (fromType == toType)
             {
                 return (T)v;
             }
-            var cnv = TypeDescriptor.GetConverter(fromType);
             if (toType == typeof(DateTime))    //Handle dates
             {
                 if (fromType == typeof(TimeSpan))
@@ -2606,7 +2606,7 @@ namespace OfficeOpenXml
                 {
                     if (cnv.CanConvertTo(typeof(double)))
                     {
-                        return (T)(object)(DateTime.FromOADate((double)cnv.ConvertTo(v, typeof(double))));
+                        return (T)(object)(ExtensionMethods.FromOADate((double)cnv.ConvertTo(v, typeof(double))));
                     }
                     else
                     {
@@ -2637,7 +2637,7 @@ namespace OfficeOpenXml
                     if (cnv.CanConvertTo(typeof(double)))
                     {
 
-                        return (T)(object)(new TimeSpan(DateTime.FromOADate((double)cnv.ConvertTo(v, typeof(double))).Ticks));
+                        return (T)(object)(new TimeSpan(ExtensionMethods.FromOADate((double)cnv.ConvertTo(v, typeof(double))).Ticks));
                     }
                     else
                     {
@@ -2664,7 +2664,7 @@ namespace OfficeOpenXml
                 }
                 else
                 {
-                    if (toType.IsGenericType && toType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
+                    if (toType.GetTypeInfo().IsGenericType && toType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
                     {
                         toType = Nullable.GetUnderlyingType(toType);
                         if (cnv.CanConvertTo(toType))
@@ -3525,7 +3525,7 @@ namespace OfficeOpenXml
                         }
                         else if(v != null)
                         {
-                            if ((v.GetType().IsPrimitive || v is double || v is decimal || v is DateTime || v is TimeSpan))
+                            if ((v.GetType().GetTypeInfo().IsPrimitive || v is double || v is decimal || v is DateTime || v is TimeSpan))
                             {
                                 //string sv = GetValueForXml(v);
                                 cache.AppendFormat("<c r=\"{0}\" s=\"{1}\" {2}>", cse.CellAddress, styleID < 0 ? 0 : styleID, GetCellType(v));
@@ -3597,7 +3597,7 @@ namespace OfficeOpenXml
             {
                 return " t=\"e\"";
             }
-            else if(allowStr && v!=null && !(v.GetType().IsPrimitive || v is double || v is decimal || v is DateTime || v is TimeSpan))
+            else if(allowStr && v!=null && !(v.GetType().GetTypeInfo().IsPrimitive || v is double || v is decimal || v is DateTime || v is TimeSpan))
             {
                 return " t=\"str\"";
             }
@@ -3627,7 +3627,7 @@ namespace OfficeOpenXml
                 {
                     s = new DateTime(((TimeSpan)v).Ticks).ToOADate().ToString(CultureInfo.InvariantCulture); ;
                 }
-                else if(v.GetType().IsPrimitive || v is double || v is decimal)
+                else if(v.GetType().GetTypeInfo().IsPrimitive || v is double || v is decimal)
                 {
                     if (v is double && double.IsNaN((double)v))
                     {
@@ -4065,7 +4065,7 @@ namespace OfficeOpenXml
                         double sdv = ((DateTime)cse.Value).ToOADate();
                         sdv += offset;
 
-                        cse.Value = DateTime.FromOADate(sdv);
+                        cse.Value = ExtensionMethods.FromOADate(sdv);
                     }
                     catch
                     {

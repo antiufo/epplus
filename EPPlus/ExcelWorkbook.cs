@@ -43,6 +43,7 @@ using OfficeOpenXml.FormulaParsing;
 using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
 using OfficeOpenXml.Packaging.Ionic.Zip;
 using System.Drawing;
+using System.Reflection;
 
 namespace OfficeOpenXml
 {
@@ -459,7 +460,7 @@ namespace OfficeOpenXml
         /// </summary>
         public void CreateVBAProject()
         {
-#if !MONO
+#if !MONO && !CORECLR
             if (_vba != null || _package.Package.PartExists(new Uri(ExcelVbaProject.PartUri, UriKind.Relative)))
             {
                 throw (new InvalidOperationException("VBA project already exists."));
@@ -467,11 +468,10 @@ namespace OfficeOpenXml
                         
             _vba = new ExcelVbaProject(this);
             _vba.Create();
-#endif
-#if MONO
+#else
             throw new NotSupportedException("Creating a VBA project is not supported under Mono.");
 #endif
-				}
+        }
 		/// <summary>
 		/// URI to the workbook inside the package
 		/// </summary>
@@ -971,7 +971,7 @@ namespace OfficeOpenXml
 			{
 				if (string.IsNullOrEmpty(name.NameFormula))
 				{
-					if ((name.NameValue.GetType().IsPrimitive || name.NameValue is double || name.NameValue is decimal))
+					if ((name.NameValue.GetType().GetTypeInfo().IsPrimitive || name.NameValue is double || name.NameValue is decimal))
 					{
 						elem.InnerText = Convert.ToDouble(name.NameValue, CultureInfo.InvariantCulture).ToString("R15", CultureInfo.InvariantCulture); 
 					}

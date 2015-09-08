@@ -24,8 +24,7 @@
 //
 
 using System;
-using System.IO;
-using System.Security.Permissions;
+using System.IO; 
 
 namespace OfficeOpenXml.Packaging.Ionic.Zip
 {
@@ -600,7 +599,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
                     n = s.Read(buffer, offset, count);
                     done = true;
                 }
-#if NETCF || SILVERLIGHT
+#if NETCF || SILVERLIGHT || CORECLR
                 catch (System.IO.IOException)
                 {
                     throw;
@@ -610,7 +609,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
                 {
                     // Check if we can call GetHRForException,
                     // which makes unmanaged code calls.
-                    var p = new SecurityPermission(SecurityPermissionFlag.UnmanagedCode);
+                    var p = new System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode);
                     if (p.IsUnrestricted())
                     {
                         uint hresult = _HRForException(ioexc1);

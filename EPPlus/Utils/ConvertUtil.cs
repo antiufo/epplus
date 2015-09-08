@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using OfficeOpenXml.FormulaParsing.ExpressionGraph;
 using System.IO;
+using System.Reflection;
 
 namespace OfficeOpenXml.Utils
 {
@@ -14,7 +15,7 @@ namespace OfficeOpenXml.Utils
         internal static bool IsNumeric(object candidate)
         {
             if (candidate == null) return false;
-            return (candidate.GetType().IsPrimitive || candidate is double || candidate is decimal || candidate is DateTime || candidate is TimeSpan || candidate is long);
+            return (candidate.GetType().GetTypeInfo().IsPrimitive || candidate is double || candidate is decimal || candidate is DateTime || candidate is TimeSpan || candidate is long);
         }
 
         internal static bool IsNumericString(object candidate)
@@ -49,7 +50,7 @@ namespace OfficeOpenXml.Utils
                     }
                     else if (v is TimeSpan)
                     {
-                        d = DateTime.FromOADate(0).Add((TimeSpan)v).ToOADate();
+                        d = ExtensionMethods.FromOADate(0).Add((TimeSpan)v).ToOADate();
                     }
                     else
                     {

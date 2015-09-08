@@ -106,9 +106,9 @@ namespace OfficeOpenXml
             //Default SHA512 and 10000 spins
             Algorithm=eProtectedRangeAlgorithm.SHA512;
             SpinCount = SpinCount < 100000 ? 100000 : SpinCount;
-            
+
             //Combine salt and password and calculate the initial hash
-            var hp=new SHA512CryptoServiceProvider();
+            var hp = SHA512.Create();
             var buffer=new byte[byPwd.Length + bySalt.Length];
             Array.Copy(bySalt, buffer, bySalt.Length);
             Array.Copy(byPwd, 0, buffer, 16, byPwd.Length);

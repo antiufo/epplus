@@ -71,8 +71,8 @@ namespace OfficeOpenXml.Packaging
                 Match = match;
             }
         }
-        Dictionary<string, ZipPackagePart> Parts = new Dictionary<string, ZipPackagePart>(StringComparer.InvariantCultureIgnoreCase);
-        internal Dictionary<string, ContentType> _contentTypes = new Dictionary<string, ContentType>(StringComparer.InvariantCultureIgnoreCase);
+        Dictionary<string, ZipPackagePart> Parts = new Dictionary<string, ZipPackagePart>(StringComparer.OrdinalIgnoreCase);
+        internal Dictionary<string, ContentType> _contentTypes = new Dictionary<string, ContentType>(StringComparer.OrdinalIgnoreCase);
         internal ZipPackage()
         {
             AddNew();

@@ -45,7 +45,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime
             else
             {
                 var d = ArgToDecimal(arguments, 0);
-                date = System.DateTime.FromOADate(d);
+                date = ExtensionMethods.FromOADate(d);
             }
             return CreateResult(date.Year, DataType.Integer);
         }
