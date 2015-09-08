@@ -33,10 +33,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography.Pkcs;
 using OfficeOpenXml.Utils;
 using System.IO;
-
+#if !CORECLR
+using System.Security.Cryptography.Pkcs;
+#endif
 namespace OfficeOpenXml.VBA
 {
     /// <summary>
@@ -54,6 +55,9 @@ namespace OfficeOpenXml.VBA
         private void GetSignature()
         {
             if (_vbaPart == null) return;
+#if CORECLR
+            throw new NotSupportedException();
+#else
             var rel = _vbaPart.GetRelationshipsByType(schemaRelVbaSignature).FirstOrDefault();
             if (rel != null)
             {
@@ -107,6 +111,7 @@ namespace OfficeOpenXml.VBA
                 Certificate = null;
                 Verifier = null;
             }
+#endif
         }
         //Create Oid from a bytearray
         //private string ReadHash(byte[] content)
@@ -216,6 +221,9 @@ namespace OfficeOpenXml.VBA
 
         private X509Certificate2 GetCertFromStore(StoreLocation loc)
         {
+#if CORECLR
+            throw new NotSupportedException();
+#else
             try
             {
                 X509Store store = new X509Store(loc);
@@ -238,6 +246,7 @@ namespace OfficeOpenXml.VBA
             {
                 return null;
             }
+#endif
         }
 
         private byte[] GetCertStore()
@@ -272,6 +281,9 @@ namespace OfficeOpenXml.VBA
         }
         internal byte[] SignProject(ExcelVbaProject proj)
         {
+#if CORECLR
+            throw new NotSupportedException();
+#else
             if (!Certificate.HasPrivateKey)
             {
                 //throw (new InvalidOperationException("The certificate doesn't have a private key"));
@@ -310,10 +322,14 @@ namespace OfficeOpenXml.VBA
             var signer = new CmsSigner(Certificate);
             Verifier.ComputeSignature(signer, false);
             return Verifier.Encode();
+#endif
         }
 
         private byte[] GetContentHash(ExcelVbaProject proj)
         {
+#if CORECLR
+            throw new NotSupportedException();
+#else
             //MS-OVBA 2.4.2
             var enc = System.Text.Encoding.GetEncoding(proj.CodePage);
             BinaryWriter bw = new BinaryWriter(new MemoryStream());
@@ -362,6 +378,7 @@ namespace OfficeOpenXml.VBA
             var buffer = (bw.BaseStream as MemoryStream).ToArray();
             var hp = System.Security.Cryptography.MD5CryptoServiceProvider.Create();
             return hp.ComputeHash(buffer);
+#endif
         }
         /// <summary>
         /// The certificate to sign the VBA project.
@@ -371,10 +388,12 @@ namespace OfficeOpenXml.VBA
         /// </remarks>
         /// </summary>
         public X509Certificate2 Certificate { get; set; }
+#if !CORECLR
         /// <summary>
         /// The verifier
         /// </summary>
         public SignedCms Verifier { get; internal set; }
+#endif
 #if !MONO
         internal CompoundDocument Signature { get; set; }
 #endif

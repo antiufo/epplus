@@ -25,7 +25,6 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using OfficeOpenXml.Utils;
-using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
@@ -1036,7 +1035,7 @@ namespace OfficeOpenXml.VBA
             SystemKind = eSyskind.Win32;            //Default
             Lcid = 1033;                            //English - United States
             LcidInvoke = 1033;                      //English - United States
-            CodePage = Encoding.Default.CodePage;
+            CodePage = Encoding.UTF8.CodePage;
             MajorVersion = 1361024421;
             MinorVersion = 6;
             HelpContextID = 0;

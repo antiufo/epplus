@@ -28,6 +28,7 @@
  * ******************************************************************************
  * Jan Källman		    Added       		        2013-01-05
  *******************************************************************************/
+ #if !CORECLR
 using OfficeOpenXml.Utils;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
 using comTypes = System.Runtime.InteropServices.ComTypes;
-
 namespace OfficeOpenXml.Encryption
 {
 
@@ -241,7 +241,7 @@ namespace OfficeOpenXml.Encryption
 
             //Encrypt the data
             var ms = new MemoryStream();
-            ms.Write(BitConverter.GetBytes(data.LongLength), 0, 8);
+            ms.Write(BitConverter.GetBytes(data.Length), 0, 8);
             while (pos < data.Length)
             {
                 var segmentSize = (int)(data.Length - pos > 4096 ? 4096 : data.Length - pos);
@@ -263,7 +263,7 @@ namespace OfficeOpenXml.Encryption
         {
             var iv = GetFinalHash(hashProvider, ei.KeyEncryptors[0], BlockKey_HmacKey, ei.KeyData.SaltValue);
             var ms = new MemoryStream();
-            EncryptAgileFromKey(ei.KeyEncryptors[0], ei.KeyEncryptors[0].KeyValue, salt, 0L, salt.LongLength, iv, ms);
+            EncryptAgileFromKey(ei.KeyEncryptors[0], ei.KeyEncryptors[0].KeyValue, salt, 0L, salt.Length, iv, ms);
             ei.DataIntegrity.EncryptedHmacKey = ms.ToArray();
             
             var h = GetHmacProvider(ei.KeyEncryptors[0], salt);
@@ -271,7 +271,7 @@ namespace OfficeOpenXml.Encryption
 
             ms = new MemoryStream();
             iv = GetFinalHash(hashProvider, ei.KeyEncryptors[0], BlockKey_HmacValue, ei.KeyData.SaltValue);
-            EncryptAgileFromKey(ei.KeyEncryptors[0], ei.KeyEncryptors[0].KeyValue, hmacValue, 0L, hmacValue.LongLength, iv, ms);
+            EncryptAgileFromKey(ei.KeyEncryptors[0], ei.KeyEncryptors[0].KeyValue, hmacValue, 0L, hmacValue.Length, iv, ms);
             ei.DataIntegrity.EncryptedHmacValue = ms.ToArray();
         }
 
@@ -321,7 +321,7 @@ namespace OfficeOpenXml.Encryption
             //Encrypt the package
             byte[] encryptedPackage = EncryptData(encryptionKey, package, false);
             MemoryStream ms = new MemoryStream();
-            ms.Write(BitConverter.GetBytes((ulong)package.LongLength), 0, 8);
+            ms.Write(BitConverter.GetBytes((ulong)package.Length), 0, 8);
             ms.Write(encryptedPackage, 0, encryptedPackage.Length);
             doc.Storage.DataStreams.Add("EncryptedPackage", ms.ToArray());
 
@@ -999,3 +999,4 @@ namespace OfficeOpenXml.Encryption
         }
     }
 }
+#endif

@@ -43,6 +43,7 @@ using System.IO;
 using System.Collections.Generic;
 using Interop = System.Runtime.InteropServices;
 using OfficeOpenXml.Packaging.Ionic.Zlib;
+using System.Reflection;
 namespace OfficeOpenXml.Packaging.Ionic.Zip
 {
     /// <summary>
@@ -2324,7 +2325,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
         {
             get
             {
-                return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                return typeof(ZipFile).GetTypeInfo().Assembly.GetName().Version;
             }
         }
 

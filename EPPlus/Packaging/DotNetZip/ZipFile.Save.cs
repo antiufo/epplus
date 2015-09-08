@@ -62,8 +62,12 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
                 }
                 catch (System.UnauthorizedAccessException)
                 {
+#if CORECLR
+                    System.Threading.Tasks.Task.Delay(200 + i * 200).Wait();
+#else
                     Console.WriteLine("************************************************** Retry delete.");
                     System.Threading.Thread.Sleep(200+i*200);
+#endif
                 }
             }
         }
@@ -663,7 +667,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
             {
                 if (zip64 == Zip64Option.Never)
                 {
-#if NETCF
+#if NETCF || CORECLR
                     throw new ZipException("The archive requires a ZIP64 Central Directory. Consider enabling ZIP64 extensions.");
 #else
                     System.Diagnostics.StackFrame sf = new System.Diagnostics.StackFrame(1);

@@ -794,20 +794,18 @@ namespace OfficeOpenXml.Packaging.Ionic.Crc
         }
 
 
-        void IDisposable.Dispose()
+   
+
+        protected override void Dispose(bool disposing)
         {
-            Close();
+            if (disposing)
+            {
+                if (!_leaveOpen)
+                    _innerStream.Close();
+            }
         }
 
-        /// <summary>
-        /// Closes the stream.
-        /// </summary>
-        public override void Close()
-        {
-            base.Close();
-            if (!_leaveOpen)
-                _innerStream.Close();
-        }
+ 
 
     }
 

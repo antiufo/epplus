@@ -81,7 +81,7 @@ namespace OfficeOpenXml.Drawing
                 _drawingsXml = new XmlDocument();                
                 _drawingsXml.PreserveWhitespace = false;
                 _drawings = new List<ExcelDrawing>();
-                _drawingNames = new Dictionary<string,int>(StringComparer.InvariantCultureIgnoreCase);
+                _drawingNames = new Dictionary<string,int>(StringComparer.OrdinalIgnoreCase);
                 _package = xlPackage;
                 Worksheet = sheet;
                 XmlNode node = sheet.WorksheetXml.SelectSingleNode("//d:drawing", sheet.NameSpaceManager);

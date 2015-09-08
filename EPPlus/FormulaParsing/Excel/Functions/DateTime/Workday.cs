@@ -12,7 +12,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime
         public override CompileResult Execute(IEnumerable<FunctionArgument> arguments, ParsingContext context)
         {
             ValidateArguments(arguments, 2);
-            var startDate = System.DateTime.FromOADate(ArgToInt(arguments, 0));
+            var startDate = ExtensionMethods.FromOADate(ArgToInt(arguments, 0));
             var nWorkDays = ArgToInt(arguments, 1);
             var resultDate = System.DateTime.MinValue;
             var workdaysCounted = 0;
@@ -50,7 +50,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime
                     if (ConvertUtil.IsNumeric(arg.Value))
                     {
                         var dateSerial = ConvertUtil.GetValueDouble(arg.Value);
-                        var holidayDate = System.DateTime.FromOADate(dateSerial);
+                        var holidayDate = ExtensionMethods.FromOADate(dateSerial);
                         if (!IsHoliday(holidayDate))
                         {
                             resultDate = resultDate.AddDays(1);
@@ -68,7 +68,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime
                         if (ConvertUtil.IsNumeric(cell.Value))
                         {
                             var dateSerial = ConvertUtil.GetValueDouble(cell.Value);
-                            var holidayDate = System.DateTime.FromOADate(dateSerial);
+                            var holidayDate = ExtensionMethods.FromOADate(dateSerial);
                             if (!IsHoliday(holidayDate))
                             {
                                 resultDate = resultDate.AddDays(1);

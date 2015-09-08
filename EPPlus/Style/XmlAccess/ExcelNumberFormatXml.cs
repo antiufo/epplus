@@ -314,6 +314,9 @@ namespace OfficeOpenXml.Style.XmlAccess
                                         else
                                         {
                                             var num = int.Parse(li[1], NumberStyles.HexNumber);
+#if CORECLR
+                                            Culture = null;
+#else
                                             try
                                             {
                                                 Culture = CultureInfo.GetCultureInfo(num & 0xFFFF);
@@ -322,6 +325,7 @@ namespace OfficeOpenXml.Style.XmlAccess
                                             {
                                                 Culture = null;
                                             }
+#endif
                                         }
                                     }
                                 }
@@ -665,6 +669,6 @@ namespace OfficeOpenXml.Style.XmlAccess
                 return pad + v;
             }
         }
-        #endregion
+#endregion
     }
 }

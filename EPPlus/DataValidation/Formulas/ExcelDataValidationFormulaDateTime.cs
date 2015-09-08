@@ -50,7 +50,7 @@ namespace OfficeOpenXml.DataValidation.Formulas
                 double oADate = default(double);
                 if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out oADate))
                 {
-                    Value = DateTime.FromOADate(oADate);
+                    Value = ExtensionMethods.FromOADate(oADate);
                 }
                 else
                 {

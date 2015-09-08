@@ -38,7 +38,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions
     /// </summary>
     public class FunctionRepository : IFunctionNameProvider
     {
-        private Dictionary<string, ExcelFunction> _functions = new Dictionary<string, ExcelFunction>(StringComparer.InvariantCulture);
+        private Dictionary<string, ExcelFunction> _functions = new Dictionary<string, ExcelFunction>(StringComparer.Ordinal);
 
         private FunctionRepository()
         {

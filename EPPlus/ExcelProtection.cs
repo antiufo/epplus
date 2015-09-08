@@ -62,7 +62,11 @@ namespace OfficeOpenXml
             }
             else
             {
+#if CORECLR
+                throw new NotSupportedException();
+#else
                 SetXmlNodeString(workbookPasswordPath, ((int)EncryptedPackageHandler.CalculatePasswordHash(Password)).ToString("x"));
+#endif
             }
         }
         const string lockStructurePath = "d:workbookProtection/@lockStructure";

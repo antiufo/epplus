@@ -1276,7 +1276,11 @@ namespace OfficeOpenXml.Packaging.Ionic
         private void SelectorTrace(string format, params object[] args)
         {
             if (_Criterion != null && _Criterion.Verbose)
+#if CORECLR
+                System.Diagnostics.Debug.WriteLine(string.Format(format, args));
+#else
                 System.Console.WriteLine(format, args);
+#endif
         }
 
         /// <summary>

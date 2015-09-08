@@ -367,7 +367,7 @@ namespace OfficeOpenXml.Table.PivotTable
                         if ((value & e) == e)
                         {
                             var newTotalType = e.ToString();
-                            var totalType = char.ToLower(newTotalType[0], CultureInfo.InvariantCulture) + newTotalType.Substring(1);
+                            var totalType = newTotalType[0].ToString().ToLowerInvariant() + newTotalType.Substring(1);
                             // add new attribute
                             SetXmlNodeBool("@" + totalType + "Subtotal", true);
                             innerXml += "<item t=\"" + totalType + "\" />";

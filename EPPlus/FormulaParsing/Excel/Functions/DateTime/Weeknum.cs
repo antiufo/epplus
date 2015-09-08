@@ -13,7 +13,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime
         {
             ValidateArguments(arguments, 1, eErrorType.Value);
             var dateSerial = ArgToDecimal(arguments, 0);
-            var date = System.DateTime.FromOADate(dateSerial);
+            var date = ExtensionMethods.FromOADate(dateSerial);
             var startDay = DayOfWeek.Sunday;
             if (arguments.Count() > 1)
             {
