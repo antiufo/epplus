@@ -27,3 +27,4 @@ obj/
 [Bb]uild[Ll]og.*
 *.[Pp]ublish.xml
 .vs
+project.lock.json
