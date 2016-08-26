@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-beta-3689",
+  "version": "1.0.1.1",
   "compilationOptions": {
     "keyFile": "../OpenOfficeXml.snk",
     "define": [
@@ -21,35 +21,42 @@
         "System.Security": "4.0.0.0"
       }
     },
-    "dotnet5.4": {
+    "netstandard1.3": {
       "compilationOptions": {
         "define": [
           "CORECLR"
         ]
       },
       "dependencies": {
-        "System.Runtime": "4.0.21-beta-23225",
-        "System.Xml.XmlDocument": "4.0.1-beta-23225",
-        "System.IO": "4.0.11-beta-23225",
-        "System.Linq": "4.0.1-beta-23225",
-        "System.Xml.XPath": "4.0.1-beta-23225",
-        "Shaman.System.Drawing": "1.0.0-beta-4007",
-        "System.Security.Cryptography.Primitives": "4.0.0-beta-23225",
-        "System.Xml.ReaderWriter": "4.0.11-beta-23225",
-        "System.ComponentModel": "4.0.1-beta-23225",
-        "System.Collections": "4.0.11-beta-23225",
-        "System.Globalization": "4.0.11-beta-23516",
-        "System.Globalization.Calendars": "4.0.1-beta-23516",
-        "System.Data.Common": "4.0.1-beta-23225",
-        "System.Xml.XPath.XmlDocument": "4.0.1-beta-23302",
-        "System.Security.Cryptography.X509Certificates": "4.0.0-beta-23225",
-        "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516",
-        "System.Threading": "4.0.11-beta-23225",
-        "System.Threading.ThreadPool": "4.0.10-beta-23225",
-        "System.Reflection": "4.1.0-beta-23225",
-        "System.Reflection.Extensions": "4.0.1-beta-23225",
-        "System.Reflection.Primitives": "4.0.1-beta-23225",
-        "System.Reflection.TypeExtensions": "4.0.1-beta-23225"
+        "System.Runtime": "4.1",
+        "System.Xml.XmlDocument": "4.0.1",
+        "System.IO": "4.1.0",
+        "System.IO.FileSystem": "4.0.1",
+        "System.Linq": "4.1.0",
+        "System.Xml.XPath": "4.0.1",
+        "Shaman.System.Drawing": "1.0.1.1",
+        "System.Security.Cryptography.Primitives": "4.0.0",
+        "System.Xml.ReaderWriter": "4.0.11",
+        "System.ComponentModel": "4.0.1",
+        "System.Collections": "4.0.11",
+        "System.Globalization": "4.0.11",
+        "System.Globalization.Calendars": "4.0.1",
+        "System.Data.Common": "4.1.0",
+        "System.Xml.XPath.XmlDocument": "4.0.1",
+        "System.Security.Cryptography.X509Certificates": "4.1.0",
+        "System.Security.Cryptography.Algorithms": "4.2.0",
+        "System.Threading": "4.0.11",
+        "System.Threading.ThreadPool": "4.0.10",
+        "System.Reflection": "4.1",
+        "System.Reflection.Extensions": "4.0.1",
+        "System.Reflection.Primitives": "4.0.1",
+        "System.Reflection.TypeExtensions": "4.1.0",
+        "System.Runtime.InteropServices": "4.1.0",
+        "System.Text.RegularExpressions": "4.1.0",
+        "System.Collections.NonGeneric": "4.0.1",
+        "System.Text.Encoding": "4.0.11",
+        "System.Diagnostics.Debug": "4.0.11",
+        "System.Text.Encoding.Extensions": "4.0.11"
       }
     }
   }
